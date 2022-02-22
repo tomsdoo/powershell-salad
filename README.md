@@ -43,7 +43,7 @@ The users can make and use the scripts or some in SALAD by their own.
   ```
 
 - Functions
-  - See [How To Add Function](documents/libraries/functions/how-to-add-funnction.md) to add the functions in SALAD.
+  - See [How To Add Function](documents/libraries/functions/how-to-add-function.md) to add the functions in SALAD.
 
 - Settings
   - See [How To Add Settings](documents/settings/how-to-add-settings.md) to customize the settings in SALAD.
