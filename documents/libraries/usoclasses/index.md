@@ -40,7 +40,7 @@ See [Get-ErrorLog](../functions/get-errorlog.md) and [ErrorLogCollector] for che
 | [ScreenSnapshot](screensnapshot.md) | provides the functions about screen snapshots. |
 | [ScriptHandler](scripthandler.md) | provides the functions around the scripts. It's a base of [VBSHandler]. |
 | [SharePointAccessClient](sharepointaccessclient.md) | provides the functions around Sharepoint list. |
-| [SharePointGetListCollection] | gets the Sharepoint lists information. |
+| [SharePointGetListCollection](sharepointgetlistcollection.md) | gets the Sharepoint lists information. |
 | [SharePointGetUserCollectionFromSite] | gets the users of the Sharepoint site. |
 | [SharePointGetViewCollection] | gets the views of the Sharepoint list. |
 | [SharePointHandlerBase] | a base of [SharePointGetListCollection], [SharePointGetUserCollectionFromSite], [SharePointGetViewCollection]. |
