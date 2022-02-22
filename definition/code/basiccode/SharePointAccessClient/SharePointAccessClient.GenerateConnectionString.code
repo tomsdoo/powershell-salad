@@ -1,0 +1,30 @@
+param($write)
+$readwritevalue = 1;
+$readwritevalue += ([convert]::ToInt32($write -eq $true));
+
+$ret = [string]::Empty;
+$ret += "Provider=";
+$ret += $this.engine;
+$ret += ";";
+if($this.engine -like "*jet*")
+{
+	$ret += "Extended Properties=`"";
+}
+$ret += "WSS;IMEX=";
+$ret += $readwritevalue.ToString();
+$ret += ";RetrieveIds=Yes;DATABASE=";
+$ret += $this.url;
+$ret += ";";
+$ret += "LIST=";
+$ret += $this.listguid;
+if(!([string]::IsNullOrEmpty($this.viewguid)))
+{
+	$ret += ";";
+	$ret += "VIEW=";
+	$ret += $this.viewguid;
+}
+if($this.engine -like "*jet*")
+{
+	$ret += "`"";
+}
+$ret;

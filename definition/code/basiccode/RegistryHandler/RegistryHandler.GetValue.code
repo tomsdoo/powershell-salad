@@ -1,0 +1,4 @@
+param($hive, $path, $name)
+$this = $this.openbasesubkey($hive, $path, $false);
+$this.openedsubkey | %{$_.getvalue($name, "", [microsoft.win32.registryvalueoptions]::DoNotExpandEnvironmentNames)};
+$this = $this.closebasesubkey();

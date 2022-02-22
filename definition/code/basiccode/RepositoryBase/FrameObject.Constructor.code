@@ -1,0 +1,4 @@
+param()
+$mo = new-object psobject;
+$this | add-member -membertype noteproperty -name MyObject -value $mo -force;
+$this;

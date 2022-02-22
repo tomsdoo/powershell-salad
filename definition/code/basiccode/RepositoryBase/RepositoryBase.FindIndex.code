@@ -1,0 +1,15 @@
+param($obj)
+$ret = -1;
+if($this.recordset)
+{
+	$idx = 0;
+	foreach($re in $this.recordset)
+	{
+		if($this.isequal($re, $obj))
+		{
+			$ret = $idx;
+		}
+		$idx++;
+	}
+}
+$ret;

@@ -1,0 +1,2 @@
+param($logname)
+get-eventlog -computername $this.computername -logname $logname;

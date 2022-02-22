@@ -1,0 +1,3 @@
+param($listguid)
+$this | Add-Member -MemberType NoteProperty -Name ListGUID -Value $listguid -Force;
+$this;

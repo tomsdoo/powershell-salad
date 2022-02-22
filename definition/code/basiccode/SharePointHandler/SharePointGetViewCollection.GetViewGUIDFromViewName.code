@@ -1,0 +1,3 @@
+param($viewname)
+$rl = $this.get();
+$rl | ?{$_.displayname -eq $viewname} | %{$_.name};

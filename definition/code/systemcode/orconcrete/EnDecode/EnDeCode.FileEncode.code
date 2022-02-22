@@ -1,0 +1,2 @@
+param($inputfilename, $outputfilename)
+get-content $inputfilename | %{$this.Encode($_)} |set-content $outputfilename;

@@ -1,0 +1,12 @@
+param($name)
+$templist = @();
+foreach($c in $this.list)
+{
+	if($c.name -ne $name)
+	{
+		$templist += $c;
+	}
+}
+$templist = $templist | sort name;
+$this | add-member -membertype noteproperty -name List -value $templist -force;
+$this;

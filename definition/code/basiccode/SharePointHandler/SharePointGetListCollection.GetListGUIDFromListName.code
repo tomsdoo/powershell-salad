@@ -1,0 +1,3 @@
+param($listname)
+$rl = $this.get();
+$rl | ?{$_.title -eq $listname} | %{$_.id};

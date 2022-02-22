@@ -1,0 +1,8 @@
+param($folder)
+$folderpath = $folder;
+if(([system.io.path]::GetFileName($folderpath)) -ne "")
+{
+	$folderpath += ([system.io.path]::directoryseparatorchar.ToString());
+}
+$this | add-member -membertype noteproperty -name FolderPath -value $folderpath -force;
+$this;

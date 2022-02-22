@@ -1,0 +1,16 @@
+param($lines)
+$parameterlist = @();
+$paramline = $lines | ?{$_ -like "param(*"};
+$a = $paramline -split "\(";
+$b = $a[1] -split "\)";
+$c = $b[0] -replace " ","";
+$parameterlist = $c -split ",";
+$ret = new basiclist;
+$ret = $ret.initialize();
+foreach($parame in $parameterlist)
+{
+	$obje = new basicelement;
+	$obje = $obje.initialize(($ret.maxseq() + 1), $parame, "");
+	$ret = $ret.add($obje);
+}
+$ret;

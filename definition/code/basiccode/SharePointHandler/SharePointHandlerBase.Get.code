@@ -1,0 +1,3 @@
+param()
+$r = $this.SendAndReceive();
+$this.Interpret($r);

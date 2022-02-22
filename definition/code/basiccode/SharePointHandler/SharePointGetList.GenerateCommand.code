@@ -1,0 +1,7 @@
+param($xml)
+$ret = $xml.CreateElement("GetList");
+$ret.SetAttribute("xmlns", "http://schemas.microsoft.com/sharepoint/soap/") | Out-Null;
+$lname = $xml.CreateElement("listName");
+$lname.InnerText = $this.ListName;
+$ret.AppendChild($lname) | Out-Null;
+$ret;

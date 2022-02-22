@@ -1,0 +1,10 @@
+param()
+$ret = 0;
+foreach($e in $this.list)
+{
+	if($e.seq -gt $ret)
+	{
+		$ret = $e.seq;
+	}
+}
+$ret;

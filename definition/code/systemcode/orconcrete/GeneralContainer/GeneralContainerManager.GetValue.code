@@ -1,0 +1,2 @@
+param($name)
+$this.find($name).value;

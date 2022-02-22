@@ -1,0 +1,3 @@
+param()
+$this | add-member -membertype noteproperty -name List -value ($this.list | sort seq) -force;
+$this;

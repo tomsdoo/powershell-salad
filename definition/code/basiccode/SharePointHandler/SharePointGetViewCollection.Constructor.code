@@ -1,0 +1,5 @@
+param()
+$baselist = @();
+$baselist += "SharePointHandlerBase";
+$this | Add-Member -MemberType NoteProperty -Name BaseClass -Value $baselist -Force;
+$this;

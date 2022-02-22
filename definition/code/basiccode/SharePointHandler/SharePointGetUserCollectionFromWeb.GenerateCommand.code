@@ -1,0 +1,4 @@
+param($xml)
+$ret = $xml.CreateElement("GetUserCollectionFromWeb");
+$ret.SetAttribute("xmlns", "http://schemas.microsoft.com/sharepoint/soap/directory/") | Out-Null;
+$ret;

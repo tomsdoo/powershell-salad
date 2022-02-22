@@ -1,0 +1,28 @@
+param()
+$lines = $this.allscript.Split([System.Environment]::NewLine.ToCharArray());
+$classnames = @();
+foreach($linee in $lines)
+{
+	if($linee -like "var * = function*")
+	{
+		$cncand = ($linee -split " ")[1];
+		$classnames += $cncand;
+	}
+}
+$sb = New-Object System.Text.StringBuilder;
+$sb.Append([System.Environment]::NewLine) | Out-Null;
+$sb.Append("function CreateInstance(provided_classname)" + [System.Environment]::NewLine) | Out-Null;
+$sb.Append("{" + [System.Environment]::NewLine) | Out-Null;
+$sb.Append("switch(provided_classname.toUpperCase())" + [System.Environment]::NewLine) | Out-Null;
+$sb.Append("{" + [System.Environment]::NewLine) | Out-Null;
+foreach($classname in $classnames)
+{
+	$sb.Append("case `"" + $classname.ToUpper() + "`":" + [System.Environment]::NewLine) | Out-Null;
+	$sb.Append("return new " + $classname + "();" + [System.Environment]::NewLine) | Out-Null;
+}
+$sb.Append("default:" + [System.Environment]::NewLine) | Out-Null;
+$sb.Append("return null;" + [System.Environment]::NewLine) | Out-Null;
+$sb.Append("}" + [System.Environment]::NewLine) | Out-Null;
+$sb.Append("}" + [System.Environment]::NewLine) | Out-Null;
+$this.allscript = $this.allscript + $sb.ToString();
+$this | Add-Member -MemberType NoteProperty -Name Classes -Value $classnames -Force;

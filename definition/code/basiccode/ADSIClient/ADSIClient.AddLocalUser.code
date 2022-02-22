@@ -1,0 +1,5 @@
+param($localuserid, $password)
+$cp = [adsi]("WinNT://" + $this.computername);
+$u = $cp.children.add($localuserid, "User");
+$u.invoke("setpassword", $password);
+$u.invoke("setinfo");

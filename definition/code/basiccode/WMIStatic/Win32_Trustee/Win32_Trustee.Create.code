@@ -1,0 +1,13 @@
+param($computername, $domain, $name)
+$ntacc = new-object System.Security.Principal.NtAccount($domain, $name);
+$accsid = $ntacc.translate([System.Security.Principal.SecurityIdentifier]);
+
+$trusteei = $this.createinstance($computername);
+$arrsid = new-object system.byte[] ($accsid.binarylength);
+$dummy = $accsid.getbinaryform($arrsid, 0);
+$trusteei.domain = $domain;
+$trusteei.name = $name;
+$trusteei.sid = $arrsid;
+$trusteei.sidlength = $accsid.binarylength;
+$trusteei.sidstring = $accsid.value;
+$trusteei;

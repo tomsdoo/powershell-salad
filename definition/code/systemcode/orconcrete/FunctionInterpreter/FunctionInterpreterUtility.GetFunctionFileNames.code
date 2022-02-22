@@ -1,0 +1,2 @@
+param()
+get-childitem $SessionManager.GetValue("system.session.directory.scripts") -recurse | ?{$_.attributes -notlike "*directory*"} | %{$_.fullname};

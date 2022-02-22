@@ -1,0 +1,4 @@
+param($name, $value)
+$this | add-member -membertype noteproperty -name Name -value $name -force;
+$this | add-member -membertype noteproperty -name Value -value $value -force;
+$this;

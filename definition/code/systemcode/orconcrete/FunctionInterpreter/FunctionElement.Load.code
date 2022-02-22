@@ -1,0 +1,45 @@
+param($filename)
+$linelist = get-content $filename;
+$nameline = $linelist | ?{$_ -like "function *"};
+$functionname = (($nameline -replace "function ","") | %{$_ -split "global:"} | %{$_ -split " "} | ?{$_ -ne ""} | %{$_ -split "\("})[0];
+
+$namstr = ($nameline -split "\(")[0];
+$paramstr = ($nameline -replace $namstr, "");
+$parameterlist = ($paramstr.substring(1, $paramstr.length -2)) -split ",";
+
+$filetitle = [System.IO.Path]::GetFileNameWithoutExtension($filename);
+if($filetitle -ne $functionname)
+{
+	throw ("Function name is different from file name. File:" + $filename + " FunctionName:" + $functionname);
+}
+
+$functionlist = (new FunctionInterpreterUtility).GetFunctionNames();
+$dependinglist = @();
+foreach($functionele in $functionlist)
+{
+	$bdepends = $false;
+	$linelist | ?{$_ -ne $nameline} | %{$bdepends = $bdepends -or ($_ -like ("*" + $functionele + "*"))};
+	if($bdepends)
+	{
+		$dependinglist += $functionele;
+	}
+}
+
+$classlist = (new Librarian).GetAvailableClassNames();
+$newlist = @();
+foreach($classele in $classlist)
+{
+	$bnews = $false;
+	$linelist | %{$bnews = $bnews -or ($_ -like ("*" + $classele + "*"))};
+	if($bnews)
+	{
+		$newlist += $classele;
+	}
+}
+
+$this | add-member -membertype noteproperty -name FileName -value $filename -force;
+$this | add-member -membertype noteproperty -name Name -value $functionname -force;
+$this | add-member -membertype noteproperty -name Parameter -value $parameterlist -force;
+$this | add-member -membertype noteproperty -name Calls -value $dependinglist -force;
+$this | add-member -membertype noteproperty -name News -value $newlist -force;
+$this;

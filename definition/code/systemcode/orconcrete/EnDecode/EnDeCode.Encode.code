@@ -1,0 +1,2 @@
+param($string)
+$this.EncodeWithKey($string, $this.key);

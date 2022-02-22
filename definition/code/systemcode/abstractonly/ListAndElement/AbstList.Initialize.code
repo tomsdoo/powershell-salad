@@ -1,0 +1,4 @@
+param()
+$templist = @();
+$this | add-member -membertype noteproperty -name List -value $templist -force;
+$this;

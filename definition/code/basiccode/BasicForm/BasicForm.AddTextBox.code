@@ -1,0 +1,6 @@
+param($tbcolname)
+$templ = @();
+$this.tblist | %{$templ += $_};
+$templ += $tbcolname;
+$this | add-member -membertype noteproperty -name TBList -value $templ -force;
+$this;

@@ -1,0 +1,3 @@
+param($groupname)
+$g = [adsi]("WinNT://" + $this.computername + "/" + $groupname);
+$g.invoke("members", $null) | %{new-object directoryservices.directoryentry($_)} | %{$_.path -replace "WinNT://",""};

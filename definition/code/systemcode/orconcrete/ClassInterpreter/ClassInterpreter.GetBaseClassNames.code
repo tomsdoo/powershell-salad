@@ -1,0 +1,3 @@
+param()
+$temp = new $this.targetclassname;
+$temp.baseclass;

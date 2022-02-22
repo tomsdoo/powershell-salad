@@ -1,0 +1,10 @@
+param($obj)
+if($this.exists($obj))
+{
+	$this.updatesql($obj);
+}
+else
+{
+	$this.insertsql($obj);
+}
+

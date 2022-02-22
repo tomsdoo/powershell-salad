@@ -1,0 +1,15 @@
+param($lines)
+$l = new Librarian;
+$classlist = $l.getavailableclassnames();
+$ret = new GeneralContainerManager;
+$ret = $ret.initialize();
+$tof = $false;
+foreach($cn in $classlist)
+{
+	$findstr = "*new *" + $cn + "*";
+	$lines | %{$tof = $tof -or ($_ -like $findstr)};
+	$objcontainer = new GeneralContainer;
+	$objcontainer = $objcontainer.initialize($cn, $tof);
+	$ret = $ret.add($objcontainer);
+}
+$ret;

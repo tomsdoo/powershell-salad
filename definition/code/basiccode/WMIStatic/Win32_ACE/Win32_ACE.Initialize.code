@@ -1,0 +1,24 @@
+param()
+$fullcontrol = 2032127;
+$read = 1179817;
+$write = 1245631;
+$accessmask = new-object psobject;
+$accessmask | add-member -membertype noteproperty -name FullControl -value $fullcontrol -force;
+$accessmask | add-member -membertype noteproperty -name Read -value $read -force;
+$accessmask | add-member -membertype noteproperty -name Write -value $write -force;
+$this | add-member -membertype noteproperty -name AccessMask -value $accessmask -force;
+
+$aceflags = new-object psobject;
+foreach($e in [System.Security.AccessControl.ACEFlags]::GetValues([System.Security.AccessControl.ACEFlags]))
+{
+	$aceflags | add-member -membertype noteproperty -name $e.ToString() -value $e -force;
+}
+$this | add-member -membertype noteproperty -name ACEFlags -value $aceflags -force;
+
+$acetype = new-object psobject;
+foreach($e in [System.Security.AccessControl.ACEType]::GetValues([System.Security.AccessControl.ACEType]))
+{
+	$acetype | add-member -membertype noteproperty -name $e.ToString() -value $e -force;
+}
+$this | add-member -membertype noteproperty -name ACEType -value $acetype -force;
+$this;

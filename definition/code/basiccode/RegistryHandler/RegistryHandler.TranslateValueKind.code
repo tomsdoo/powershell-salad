@@ -1,0 +1,30 @@
+param($from)
+$valk = $null;
+switch($valuekind.ToUpper())
+{
+	"BINARY"
+	{
+		$valk = [microsoft.win32.registryvaluekind]::Binary;
+	}
+	"DWORD"
+	{
+		$valk = [microsoft.win32.registryvaluekind]::DWord;
+	}
+	"EXPANDSTRING"
+	{
+		$valk = [microsoft.win32.registryvaluekind]::ExpandString;
+	}
+	"MULTISTRING"
+	{
+		$valk = [microsoft.win32.registryvaluekind]::MultiString;
+	}
+	"STRING"
+	{
+		$valk = [microsoft.win32.registryvaluekind]::String;
+	}
+	"UNKNOWN"
+	{
+		$valk = [microsoft.win32.registryvaluekind]::Unknown;
+	}
+}
+$valk;

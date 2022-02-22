@@ -1,0 +1,8 @@
+param($seq, $classname, $methodname, $line, $containermanager)
+$this | add-member -membertype noteproperty -name TimeGenerated -value (Get-Date -format "yyyyMMddHHmmssfff") -force;
+$this | add-member -membertype noteproperty -name Seq -value $seq -force;
+$this | add-member -membertype noteproperty -name ClassName -value $classname -force;
+$this | add-member -membertype noteproperty -name MethodName -value $methodname -force;
+$this | add-member -membertype noteproperty -name Line -value $line -force;
+$this | add-member -membertype noteproperty -name Container -value $containermanager -force;
+$this;

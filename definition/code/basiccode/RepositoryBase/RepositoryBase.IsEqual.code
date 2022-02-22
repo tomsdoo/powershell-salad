@@ -1,0 +1,11 @@
+param($refobj, $diffobj)
+$ret = $false;
+if($this.keycolumnlist)
+{
+	$ret = $true;
+	foreach($ce in $this.keycolumnlist)
+	{
+		$ret = $ret -and ($refobj.$ce -eq $diffobj.$ce);
+	}
+}
+$ret;

@@ -1,0 +1,6 @@
+param($mdbfilename)
+$db = New-Object Data.OleDb.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + $mdbfilename);
+$dummy = $db.Open();
+$ret = $db.GetOleDbSchemaTable([System.Data.OleDb.OleDbSchemaGUID]::Columns, $null);
+$dummy = $db.Close();
+$ret;

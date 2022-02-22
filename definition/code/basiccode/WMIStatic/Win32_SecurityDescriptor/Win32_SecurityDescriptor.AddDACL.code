@@ -1,0 +1,3 @@
+param($securitydescriptor, $ace)
+$securitydescriptor.dacl += $ace;
+$securitydescriptor;

@@ -1,0 +1,4 @@
+param()
+$ntaccount = $this.sid.Translate([System.Security.Principal.NTAccount]);
+$this | Add-Member -MemberType NoteProperty -Name NTAccount -Value $ntaccount -Force;
+$this;

@@ -1,0 +1,22 @@
+param($FromFileName, $ToFileName, $ToSheetName)
+$app = New-Object -Comobject Excel.Application;
+$app.displayalerts = $false;
+if(!(test-path $ToFileName))
+{
+	Write-Host "The file does not exist that we are going to import sheets to.";
+}
+else
+{
+	$mainbook = $a.workbooks.open($ToFileName);
+	$indexsheet = $mainbook.worksheets.item($ToSheetName);
+	if(!$indexsheet)
+	{
+		$indexsheet = $mainbook.worksheets.item(1);
+	}
+	$tempbook = $a.workbooks.open($FromFileName);
+	1..$tempbook.worksheets.count | %{$dummy = $tempbook.worksheets.item($_).copy($indexsheet)};
+	$dummy = $tempbook.close();
+	$dummy = $mainbook.save();
+	$dummy = $mainbook.close();
+}
+$dummy = $app.quit();

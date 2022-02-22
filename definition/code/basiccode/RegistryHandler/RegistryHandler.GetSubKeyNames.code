@@ -1,0 +1,4 @@
+param($hive, $path)
+$this = $this.openbasesubkey($hive, $path, $false);
+$this.openedsubkey | %{$_.GetSubKeyNames()};
+$this = $this.closebasesubkey();

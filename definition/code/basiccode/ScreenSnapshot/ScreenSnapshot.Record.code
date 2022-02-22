@@ -1,0 +1,13 @@
+param($times, $interval)
+foreach($i in (1..$times))
+{
+	[system.threading.thread]::Sleep($interval);
+
+	$dummy = [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing");
+	$dummy = [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms");
+	$bmp = New-Object System.Drawing.Bitmap([System.Windows.Forms.Screen]::PrimaryScreen.Bounds.Width, [System.Windows.Forms.Screen]::PrimaryScreen.Bounds.Height);
+	$g = [System.Drawing.Graphics]::FromImage($bmp);
+	$g.CopyFromScreen((New-Object System.Drawing.Point(0, 0)), (New-Object System.Drawing.Point(0, 0)), $bmp.size);
+	$g.dispose();
+	$bmp.save(($this.folderpath + ((Get-Date -Format "yyyyMMddHHmmssfff") + ".jpg")), [System.Drawing.Imaging.ImageFormat]::Jpeg);
+}

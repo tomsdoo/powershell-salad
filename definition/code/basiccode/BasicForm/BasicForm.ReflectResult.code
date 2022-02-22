@@ -1,0 +1,7 @@
+param($form)
+$tempo = new-object psobject;
+foreach($tbe in $this.tblist)
+{
+	$tempo | add-member -membertype noteproperty -name $tbe -value $form.controls.item("TB_"+$tbe).text -force;
+}
+$this | add-member -membertype noteproperty -name Result -value $tempo -force;

@@ -1,0 +1,4 @@
+param($localuserid)
+$cp = [adsi]("WinNT://" + $this.computername);
+$u = [adsi]("WinNT://" + $this.computername + "/" + $localuserid);
+$cp.children.remove($u);

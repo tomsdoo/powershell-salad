@@ -1,0 +1,2 @@
+param($computername, $path, $classname)
+$this.yenyen + $computername + $this.yen + $path + $this.colon + $classname;

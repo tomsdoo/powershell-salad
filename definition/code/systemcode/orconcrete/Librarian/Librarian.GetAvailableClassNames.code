@@ -1,0 +1,2 @@
+param()
+$CodeManager.registry | %{$_.name} | %{($_ -split "\.")[0]} | group | sort name | %{$_.name};

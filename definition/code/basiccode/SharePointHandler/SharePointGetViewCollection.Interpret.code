@@ -1,0 +1,4 @@
+param($xmlstr)
+$d = New-Object system.xml.xmldocument;
+$d.LoadXml($xmlstr);
+$d.Envelope.Body.GetViewCollectionResponse.GetViewCollectionResult.Views.View;

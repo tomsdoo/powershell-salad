@@ -1,0 +1,3 @@
+param($computername)
+$this | add-member -membertype noteproperty -name ComputerName -value $computername -force;
+$this;

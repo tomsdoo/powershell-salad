@@ -1,0 +1,8 @@
+param($computername)
+$wmip = new WMIPath;
+$wmip = $wmip.initialize();
+$classpath = $wmip.createpath($computername, $wmip.cimv2path, $this.classname);
+
+$pathclass = New-Object System.Management.ManagementPath($classpath);
+$creatorclass = New-Object System.Management.ManagementClass($pathclass);
+$creatorclass.CreateInstance();

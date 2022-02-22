@@ -1,0 +1,2 @@
+param()
+schtasks /query /s $this.computername /v /fo csv | convertfrom-csv;

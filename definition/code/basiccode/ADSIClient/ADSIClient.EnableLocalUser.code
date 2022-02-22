@@ -1,0 +1,4 @@
+param($localuserid)
+$u = [adsi]("WinNT://" + $this.computername + "/" + $localuserid);
+$u.UserFlags.Value = $u.UserFlags.Value -bxor $this.userflags.ADS_UF_ACCOUNTDISABLE;
+$u.invoke("setinfo");

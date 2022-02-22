@@ -1,0 +1,3 @@
+param()
+$cp = [adsi]("WinNT://" + $this.computername);
+$cp.children | ?{$_.schemaclassname -eq "group"} | %{$_.name};

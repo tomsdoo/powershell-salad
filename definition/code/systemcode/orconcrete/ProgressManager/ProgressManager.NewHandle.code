@@ -1,0 +1,4 @@
+param()
+$ret = $this.currentmax + 1;
+$this.currentmax = $ret;
+$ret;

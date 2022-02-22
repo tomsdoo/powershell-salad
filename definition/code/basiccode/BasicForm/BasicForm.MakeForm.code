@@ -1,0 +1,54 @@
+param()
+$form = new-object system.windows.forms.form;
+$form.suspendlayout();
+$form.text = $this.caption;
+$tabindex = 1;
+$yposition = 0;
+foreach($tbe in $this.tblist)
+{
+	$label = new-object system.windows.forms.label;
+	$label.autosize = $true;
+	$label.location = new-object system.drawing.point(0, $yposition);
+	$label.name = "LBL_" + $yposition.tostring();
+	$label.size = new-object system.drawing.size(100, 100);
+	$label.tabindex = $tabindex;
+	$tabindex++;
+	$label.text = $tbe;
+	$form.controls.add($label);
+
+	$textbox = new-object system.windows.forms.textbox;
+	$textbox.location = new-object system.drawing.point(200, $yposition);
+	$textbox.multiline = $false;
+	$textbox.name = "TB_" + $tbe;
+	$textbox.size = new-object system.drawing.size(100, 100);
+	$textbox.tabindex = $tabindex;
+	$tabindex++;
+	$form.controls.add($textbox);
+	$yposition += ($textbox.height + 1);
+}
+$okbutton = new-object system.windows.forms.button;
+$okbutton.dialogresult = [system.windows.forms.dialogresult]::ok;
+$okbutton.location = new-object system.drawing.point(0, $yposition);
+$okbutton.name = "BTN_OK";
+$okbutton.size = new-object system.drawing.size(100, 20);
+$okbutton.tabindex = $tabindex;
+$tabindex++;
+$okbutton.text = "OK";
+$form.controls.add($okbutton);
+$xposition = $okbutton.width + 1;
+
+$cancelbutton = new-object system.windows.forms.button;
+$cancelbutton.dialogresult = [system.windows.forms.dialogresult]::Cancel;
+$cancelbutton.location = new-object system.drawing.point($xposition, $yposition);
+$cancelbutton.name = "BTN_CANCEL";
+$cancelbutton.size = new-object system.drawing.size(100, 20);
+$cancelbutton.tabindex = $tabindex;
+$tabindex++;
+$cancelbutton.text = "Cancel";
+$form.controls.add($cancelbutton);
+
+$form.showicon = $true;
+$form.showintaskbar = $true;
+$form.ResumeLayout($false);
+$form.PerformLayout();
+$form;

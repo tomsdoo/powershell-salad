@@ -1,0 +1,3 @@
+param($string, $key)
+$temp = convertto-securestring $string -asplaintext -force;
+convertfrom-securestring -securestring $temp -key $key;

@@ -1,0 +1,7 @@
+param($CSVFileName, $XLSFileName)
+$app = New-Object -Comobject Excel.Application;
+$app.displayalerts = $false;
+$book = $app.workbooks.open($CSVFileName);
+$dummy = $book.SaveAs($XLSFileName);
+$dummy = $book.close();
+$dummy = $app.quit();

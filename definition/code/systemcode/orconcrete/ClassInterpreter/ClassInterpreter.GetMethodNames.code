@@ -1,0 +1,2 @@
+param()
+$CodeManager.registry | ?{$_.name -like ($this.targetclassname + ".*")} | %{$_.name} | %{$_ -replace ($this.targetclassname + "\."), ""};

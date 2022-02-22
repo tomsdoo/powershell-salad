@@ -1,0 +1,3 @@
+param($viewguid)
+$this | Add-Member -MemberType NoteProperty -Name ViewGUID -Value $viewguid -Force;
+$this;

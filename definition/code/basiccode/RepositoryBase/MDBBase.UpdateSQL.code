@@ -1,0 +1,68 @@
+param($obj)
+$propl = $this.GetPropertyNames($obj);
+$presql = "";
+$presql += "update ";
+$presql += "[";
+$presql += $this.classname;
+$presql += "]";
+$wherestatement = "";
+$wherestatement += " where ";
+$bfwhere = $true;
+$setstatement = "";
+$bfset = $true;
+foreach($prope in $propl)
+{
+	if(($obj.$prope.gettype()).name -ne "dbnull")
+	{
+		if($obj.$prope -ne "")
+		{
+			if($this.keycolumnlist -contains $prope)
+			{
+				if($bfwhere)
+				{
+					$bfwhere = $false;
+				}
+				else
+				{
+					$wherestatement += " and ";
+				}
+				$wherestatement += " ";
+				$wherestatement += "[";
+				$wherestatement += $prope;
+				$wherestatement += "]";
+				$wherestatement += " = ";
+				$wherestatement += "'";
+				$wherestatement += $obj.$prope;
+				$wherestatement += "'";
+				$wherestatement += " ";
+			}
+			else
+			{
+				if($bfset)
+				{
+					$bfset = $false;
+				}
+				else
+				{
+					$setstatement += ",";
+				}
+				$setstatement += " ";
+				$setstatement += "[";
+				$setstatement += $prope;
+				$setstatement += "]";
+				$setstatement += " = ";
+				$setstatement += "'";
+				$setstatement += $obj.$prope;
+				$setstatement += "'";
+				$setstatement += " ";
+			}
+		}
+	}
+}
+$sql = "";
+if($setstatement -ne "")
+{
+	$setstatement = " set " + $setstatement;
+	$sql = $presql + $setstatement + $wherestatement;
+}
+$sql;

@@ -1,0 +1,10 @@
+param($seq)
+$ret = new $this.classname;
+foreach($ele in $this.list)
+{
+	if($ele.seq -ne $seq)
+	{
+		$ret = $ret.add($ele);
+	}
+}
+$ret;

@@ -1,0 +1,6 @@
+param($provided_caption)
+$this | add-member -membertype noteproperty -name Caption -value $provided_caption -force;
+$tbl = @();
+$this | add-member -membertype noteproperty -name TBList -value $tbl -force;
+$this;
+

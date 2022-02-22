@@ -1,0 +1,10 @@
+param($computername, $sharefolderpath, $sharename, $securitydescriptor)
+$wmip = new WMIPath;
+$wmip = $wmip.initialize();
+$classpath = $wmip.createpath($computername, $wmip.cimv2path, $this.classname);
+$shp = new-object system.management.managementpath($classpath);
+$shc = new-object system.management.managementclass($shp);
+$dummy = $shc.create($sharefolderpath, $sharename, 0);
+
+$lsss = get-wmiobject -computername $computername -namespace root\cimv2 -class win32_logicalsharesecuritysetting;
+($lsss | ?{$_.name -eq $sharename}).setsecuritydescriptor($securitydescriptor);

@@ -1,0 +1,2 @@
+param($classname)
+$this.ScriptControl.CodeObject.CreateInstance($classname);

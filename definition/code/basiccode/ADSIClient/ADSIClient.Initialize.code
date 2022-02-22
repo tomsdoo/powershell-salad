@@ -1,0 +1,25 @@
+param($computername)
+$this | add-member -membertype noteproperty -name ComputerName -value $computername -force;
+$ADS_UF_SCRIPT = 0x01;
+$ADS_UF_ACCOUNTDISABLE = 0x02;
+$ADS_UF_HOMEDIR_REQUIRED = 0x08;
+$ADS_UF_LOCKOUT = 0x10;
+$ADS_UF_PASSWD_NOTREQD = 0x08;
+$ADS_UF_PASSWD_CANT_CHANGE = 0x40;
+$ADS_UF_ENCRYPTED_TEXT_PASSWORD_ALLOWED = 0x80;
+$ADS_UF_DONT_EXPIRE_PASSWD = 0x010000;
+$ADS_UF_SMARTCARD_REQUIRED = 0x040000;
+$ADS_UF_PASSWORD_EXPIRED = 0x800000;
+$flags = new-object psobject;
+$flags | add-member -membertype noteproperty -name ADS_UF_SCRIPT -value $ADS_UF_SCRIPT -force;
+$flags | add-member -membertype noteproperty -name ADS_UF_ACCOUNTDISABLE -value $ADS_UF_ACCOUNTDISABLE -force;
+$flags | add-member -membertype noteproperty -name ADS_UF_HOMEDIR_REQUIRED -value $ADS_UF_HOMEDIR_REQUIRED -force;
+$flags | add-member -membertype noteproperty -name ADS_UF_LOCKOUT -value $ADS_UF_LOCKOUT -force;
+$flags | add-member -membertype noteproperty -name ADS_UF_PASSWD_NOTREQD -value $ADS_UF_PASSWD_NOTREQD -force;
+$flags | add-member -membertype noteproperty -name ADS_UF_PASSWD_CANT_CHANGE -value $ADS_UF_PASSWD_CANT_CHANGE -force;
+$flags | add-member -membertype noteproperty -name ADS_UF_ENCRYPTED_TEXT_PASSWORD_ALLOWED -value $ADS_UF_ENCRYPTED_TEXT_PASSWORD_ALLOWED -force;
+$flags | add-member -membertype noteproperty -name ADS_UF_DONT_EXPIRE_PASSWD -value $ADS_UF_DONT_EXPIRE_PASSWD -force;
+$flags | add-member -membertype noteproperty -name ADS_UF_SMARTCARD_REQUIRED -value $ADS_UF_SMARTCARD_REQUIRED -force;
+$flags | add-member -membertype noteproperty -name ADS_UF_PASSWORD_EXPIRED -value $ADS_UF_PASSWORD_EXPIRED -force;
+$this | add-member -membertype noteproperty -name UserFlags -value $flags -force;
+$this;

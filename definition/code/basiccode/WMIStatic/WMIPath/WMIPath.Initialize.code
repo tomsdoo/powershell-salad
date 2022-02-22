@@ -1,0 +1,10 @@
+param()
+$yen = [System.IO.Path]::DirectorySeparatorChar.ToString();
+$this | add-member -membertype noteproperty -name Yen -value $yen -force;
+$yenyen = $yen + $yen;
+$this | add-member -membertype noteproperty -name YenYen -value $yenyen -force;
+$colon = ":";
+$this | add-member -membertype noteproperty -name Colon -value $colon -force;
+$cimv2path = "root" + $yen + "cimv2";
+$this | add-member -membertype noteproperty -name CIMv2Path -value $cimv2path -force;
+$this;

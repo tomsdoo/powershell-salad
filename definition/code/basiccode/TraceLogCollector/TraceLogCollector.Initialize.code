@@ -1,0 +1,4 @@
+param($userid)
+$this | Add-Member -MemberType NoteProperty -Name LogFolder -Value ($SessionManager.GetValue("system.session.directory.log")) -Force;
+$this | Add-Member -MemberType NoteProperty -Name UserID -Value $userid -Force;
+$this;

@@ -1,0 +1,42 @@
+param($from)
+$hivel = $null;
+switch($from.ToUpper())
+{
+	"HKLM"
+	{
+		$hivel = [microsoft.win32.RegistryHive]::LocalMachine;
+	}
+	"HKCU"
+	{
+		$hivel = [microsoft.win32.RegistryHive]::CurrentUser;
+	}
+	"HKEY_LOCAL_MACHINE"
+	{
+		$hivel = [microsoft.win32.RegistryHive]::LocalMachine;
+	}
+	"HKEY_CURRENT_USER"
+	{
+		$hivel = [microsoft.win32.RegistryHive]::CurrentUser;
+	}
+	"HKEY_CLASSES_ROOT"
+	{
+		$hivel = [microsoft.win32.RegistryHive]::ClassesRoot;
+	}
+	"HKEY_CURRENT_CONFIG"
+	{
+		$hivel = [microsoft.win32.RegistryHive]::CurrentConfig;
+	}
+	"HKEY_DYN_DATA"
+	{
+		$hivel = [microsoft.win32.RegistryHive]::DynData;
+	}
+	"HKEY_PERFORMANCE_DATA"
+	{
+		$hivel = [microsoft.win32.RegistryHive]::PerformanceData;
+	}
+	"HKEY_USERS"
+	{
+		$hivel = [microsoft.win32.RegistryHive]::Users;
+	}
+}
+$hivel;

@@ -1,0 +1,32 @@
+param($keystring)
+$keycand = for($i = 0; $i -lt $keystring.length; $i++)
+{
+	[system.convert]::ToInt32([system.convert]::ToChar($keystring[$i]));
+}
+
+$key = @();
+$loopcount = 24 / $keycand.count;
+$residue = 24 % $keycand.count;
+for($j = 0; $j -lt $loopcount; $j++)
+{
+	for($l = 0; $l -lt $keycand.count; $l++)
+	{
+		$key += $keycand[$l];
+	}
+}
+for($k = 0; $k -lt $residue; $k++)
+{
+	$key += $keycand[$k];
+}
+if($key.count -gt 24)
+{
+	$tempkey = @();
+	foreach($idx in (0..23))
+	{
+		$tempkey += $key[$idx];
+	}
+	$key = $tempkey;
+}
+
+$this | add-member -membertype noteproperty -name Key -value $key -force;
+$this;

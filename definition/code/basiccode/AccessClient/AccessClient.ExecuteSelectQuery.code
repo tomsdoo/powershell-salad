@@ -1,0 +1,16 @@
+param($mdbfilename, $sql)
+$db = New-Object Data.OleDb.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + $mdbfilename);
+$comm = New-Object System.Data.OleDb.OleDbCommand($sql, $db);
+$dummy = $db.Open();
+$r = $comm.ExecuteReader() | foreach{$_};
+$reclist = foreach($temp in $r)
+{
+	$rec = New-Object psobject;
+	for($j = 0; $j -lt $temp.fieldcount; $j++)
+	{
+		$rec | add-member -membertype noteproperty -name ($temp.getname($j)) -value ($temp.getvalue($j)) -force;
+	}
+	$rec;
+}
+$dummy = $db.Close();
+$reclist;

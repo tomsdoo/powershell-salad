@@ -1,0 +1,6 @@
+param($obj)
+$list = @();
+$this.List | %{$list += $_;};
+$list += $obj;
+$this | add-member -membertype noteproperty -name List -value $list -force;
+$this;

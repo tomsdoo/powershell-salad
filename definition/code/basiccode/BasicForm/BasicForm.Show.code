@@ -1,0 +1,8 @@
+param($form)
+$r = $form.showdialog();
+if($r -eq [system.windows.forms.dialogresult]::ok)
+{
+	$this.reflectresult($form);
+	$form;
+}
+

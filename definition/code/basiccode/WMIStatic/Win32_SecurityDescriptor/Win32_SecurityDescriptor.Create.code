@@ -1,0 +1,6 @@
+param($computername, $controlflags, $grouptrustee, $ownertrustee)
+$sdi = $this.createinstance($computername);
+$sdi.controlflags = $controlflags;
+$sdi.group = $grouptrustee;
+$sdi.owner = $ownertrustee;
+$sdi;

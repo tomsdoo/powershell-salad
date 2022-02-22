@@ -1,0 +1,2 @@
+param($CLIXMLFileName, $CSVFileName)
+import-clixml $CLIXMLFileName | export-csv $CSVFileName -encoding default;

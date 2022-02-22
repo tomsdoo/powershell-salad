@@ -1,0 +1,25 @@
+param($keyword)
+$filterstr = "*" + $this.userid + "*.xml";
+$keystr = "*";
+if($keyword)
+{
+	$keystr = "*" + $keyword + "*";
+}
+$fl = get-childitem $this.logfolder -filter $filterstr | ?{$_.name -like $keystr};
+if($fl -ne $null)
+{
+	foreach($fe in $fl)
+	{
+		$tempo = new-object psobject;
+		$tempo | add-member -membertype noteproperty -name FileName -value $fe.fullname -force;
+		$tl = $fe.name -split "_";
+		$tempo | add-member -membertype noteproperty -name Date -value $tl[0] -force;
+		$tempo | add-member -membertype noteproperty -name OnWhat -value $tl[1] -force;
+		$tempo | add-member -membertype noteproperty -name Who -value $tl[2] -force;
+		$tempo | add-member -membertype noteproperty -name WhatKind -value $tl[4] -force;
+		$tempo | add-member -membertype noteproperty -name DateTieDetail -value ($tl[5] -replace ".xml", [string]::Empty) -force;
+		$tempo | add-member -membertype noteproperty -name LogData -value (Import-clixml $fe.fullname) -force;
+		$tempo;
+	}
+}
+

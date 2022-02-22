@@ -1,0 +1,6 @@
+param($siteurl, $listname)
+$this | Add-Member -MemberType NoteProperty -Name SiteURL -Value $siteurl -Force;
+$this | Add-Member -MemberType NoteProperty -Name MethodURL -Value ($siteurl + "_vti_bin/views.asmx") -Force;
+$this | Add-Member -MemberType NoteProperty -Name SOAPAction -Value "http://schemas.microsoft.com/sharepoint/soap/GetViewCollection" -Force;
+$this | Add-Member -MemberType NoteProperty -Name ListName -Value $listname -Force;
+$this;

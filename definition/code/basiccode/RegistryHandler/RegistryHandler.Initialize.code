@@ -1,0 +1,32 @@
+param($computername)
+$this | add-member -membertype noteproperty -name ComputerName -value $computername -force;
+
+$hivenames = new-object psobject;
+$hivenamestrl = @();
+$hivenamestrl += "HKEY_LOCAL_MACHINE";
+$hivenamestrl += "HKEY_CURRENT_USER";
+$hivenamestrl += "HKEY_CLASSES_ROOT";
+$hivenamestrl += "HKEY_CURRENT_CONFIG";
+$hivenamestrl += "HKEY_DYN_DATA";
+$hivenamestrl += "HKEY_PERFORMANCE_DATA";
+$hivenamestrl += "HKEY_USERS";
+foreach($hivenamestre in $hivenamestrl)
+{
+	$hivenames | add-member -membertype noteproperty -name $hivenamestre -value $hivenamestre -force;
+}
+$this | add-member -membertype noteproperty -name HiveNames -value $hivenames -force;
+
+$valuekinds = new-object psobject;
+$valuekindstrl = @();
+$valuekindstrl += "BINARY";
+$valuekindstrl += "DWORD";
+$valuekindstrl += "EXPANDSTRING";
+$valuekindstrl += "MULTISTRING";
+$valuekindstrl += "STRING";
+foreach($valuekindstre in $valuekindstrl)
+{
+	$valuekinds | add-member -membertype noteproperty -name ValueKinds -value $valuekindstre -force;
+}
+$this | add-member -membertype noteproperty -name ValueKinds -value $valuekinds -force;
+
+$this;

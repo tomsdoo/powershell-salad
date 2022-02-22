@@ -1,0 +1,7 @@
+param()
+$baselist = @();
+$baselist += "VBSHandler";
+$this | Add-Member -MemberType NoteProperty -Name BaseClass -Value $baselist -Force;
+$this | Add-Member -MemberType NoteProperty -Name ScriptFileExtension -Value ".js" -Force;
+$this | Add-Member -MemberType NoteProperty -Name Language -Value "javascript" -Force;
+$this;

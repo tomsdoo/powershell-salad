@@ -1,0 +1,18 @@
+param($sql)
+$strConn = $this.builder.connectionstring;
+$conn = new-object system.data.sqlclient.sqlconnection($strConn);
+$cmd = new-object system.data.sqlclient.sqlcommand($sql, $conn);
+$dummy = $conn.open();
+$r = cmd.ExecuteReader() | foreach{$_};
+
+$reclist = foreach($temp in $r)
+{
+	$rec = new-object psobject;
+	for($j = 0; $j -lt $temp.fieldcount; $j++)
+	{
+		$rec | add-member -membertype noteproperty -name ($temp.getname($j)) -value ($temp.getvalue($j)) -force;
+	}
+	$rec;
+}
+$dummy = $conn.close();
+$reclist;

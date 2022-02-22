@@ -1,0 +1,3 @@
+param($url)
+$this | Add-Member -MemberType NoteProperty -Name URL -Value $url -Force;
+$this;

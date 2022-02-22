@@ -1,0 +1,5 @@
+param($siteurl)
+$this | Add-Member -MemberType NoteProperty -Name SiteURL -Value $siteurl -Force;
+$this | Add-Member -MemberType NoteProperty -Name MethodURL -Value ($siteurl + "_vti_bin/usergroup.asmx") -Force;
+$this | Add-Member -MemberType NoteProperty -Name SOAPAction -Value "http://schemas.microsoft.com/sharepoint/soap/directory/GetUserCollectionFromSite" -Force;
+$this;

@@ -1,0 +1,21 @@
+param($hive, $path)
+$names = $this.GetValueNames($hive, $path);
+$names = $names + "";
+foreach($nam in $names)
+{
+	$val = $this.GetValue($hive, $path, $nam);
+	$temp = new-object psobject;
+	$temp | add-member -membertype noteproperty -name HIVE -value $hive -force;
+	$temp | add-member -membertype noteproperty -name PATH -value $path -force;
+	$temp | add-member -membertype noteproperty -name NAME -value $nam -force;
+	$temp | add-member -membertype noteproperty -name VALUE -value $val -force;
+	$temp;
+}
+$subkeys = $this.GetSubKeyNames($hive, $path) | ?{$_ -ne ""} | ?{$_ -ne $null};
+if($subkeys -ne $null)
+{
+	foreach($sk in $subkeys)
+	{
+		$this.GetTree($hive, ($path + [system.io.path]::DirectorySeparatorChar.ToString() + $sk));
+	}
+}

@@ -1,0 +1,56 @@
+param($keyword)
+$un = [string]::Empty;
+if(!([string]::IsNullOrEmpty($this.userid)))
+{
+	$un = $this.userid;
+}
+$ukey = "*" + $un + "*.log";
+$kstr = [string]::Empty;
+if(!([string]::IsNullOrEmpty($keyword)))
+{
+	$kstr = $keyword;
+}
+$kkey = "*" + $kstr + "*";
+$fl = Get-ChildItem $this.logfolder -Filter $ukey | ?{$_.name -like $kkey};
+if($fl -ne $null)
+{
+	foreach($fe in $fl)
+	{
+		$lines = Get-Content $fe.FullName | %{$_.ToString()};
+		$svl = $fe.Name -split "_";
+		$dt = $svl[0];
+		$onwhat = $svl[1];
+		$who = $svl[2];
+		foreach($line in $lines)
+		{
+			$iscommandline = $line -like "* SALAD >*";
+			if($iscommandline -eq $true)
+			{
+				$tempo = New-Object PSObject;
+				$tempo | Add-Member -MemberType NoteProperty -Name FileName -Value $fe.FullName -Force;
+				$tempo | Add-Member -MemberType NoteProperty -Name DateStr -Value $dt -Force;
+				$tempo | Add-Member -MemberType NoteProperty -Name OnWhat -Value $onwhat -Force;
+				$tempo | Add-Member -MemberType NoteProperty -Name Who -Value $who -Force;
+				$tempdate = [DateTime]::MinValue;
+				try
+				{
+					$tempdate = [DateTime]::ParseExact($line.Substring(0, 23), "yyyy/MM/dd HH:mm:ss:fff", $null);
+				}
+				catch
+				{
+				}
+				$tempcommand = [string]::Empty;
+				try
+				{
+					$tempcommand = $line.Substring(31);
+				}
+				catch
+				{
+				}
+				$tempo | Add-Member -MemberType NoteProperty -Name When -Value $tempdate -Force;
+				$tempo | Add-Member -MemberType NoteProperty -Name CommandLine -Value $tempcommand -Force;
+				$tempo;
+			}
+		}
+	}
+}

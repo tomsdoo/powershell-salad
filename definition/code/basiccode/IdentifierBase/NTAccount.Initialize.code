@@ -1,0 +1,5 @@
+param($domain, $name)
+$n = New-Object System.Security.Principal.NTAccount($domain, $name);
+$this | Add-Member -MemberType NoteProperty -Name SID -Value ($n.Translate([System.Security.Principal.SecurityIdentifier])) -Force;
+$this = $this.InitializeMember();
+$this;

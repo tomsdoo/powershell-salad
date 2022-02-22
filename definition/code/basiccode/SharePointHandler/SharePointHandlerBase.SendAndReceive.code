@@ -1,0 +1,29 @@
+param()
+[System.Reflection.Assembly]::LoadWithPartialName("System.Web") | Out-Null;
+$xml = $this.GenerateXml();
+
+$postdatabytes = [System.Text.Encoding]::ASCII.GetBytes($xml.OuterXml);
+$wr = [System.Net.WebRequest]::Create($this.methodurl);
+$wr.Method = "POST";
+$wr.ContentType = "text/xml; charset=utf-8";
+$wr.ContentLength = $postdatabytes.Length;
+$wr.Headers.Add("SOAPAction", $this.SOAPAction);
+if($this.Credential -ne $null)
+{
+	$wr.Credentials = $this.Credential;
+}
+else
+{
+	$wr.UseDefaultCredentials = $true;
+}
+
+$reqstream = $wr.GetRequestStream();
+$reqstream.Write($postdatabytes, 0, $postdatabytes.Length);
+$reqstream.Close();
+
+$res = $wr.GetResponse();
+$resstream = $res.GetResponseStream();
+$sr = New-Object System.IO.StreamReader($resstream, [System.Text.Encoding]::UTF8);
+$ret = $sr.ReadToEnd();
+$sr.Close();
+$ret;

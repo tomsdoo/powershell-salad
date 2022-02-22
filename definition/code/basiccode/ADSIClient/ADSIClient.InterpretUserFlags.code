@@ -1,0 +1,10 @@
+param($localuserid)
+$u = [adsi]("WinNT://" + $this.computername + "/" + $localuserid);
+$ret = new-object psobject;
+$ret | add-member -membertype noteproperty -name ComputerName -value $this.computername -force;
+$ret | add-member -membertype noteproperty -name UserName -value $localuserid -force;
+foreach($prope in ($this.userflags | get-member -type noteproperty | %{$_.name}))
+{
+	$ret | add-member -membertype noteproperty -name $prope -value ([system.convert]::ToBoolean($u.userflags.value -band $this.userflags.$prope)) -force;
+}
+$ret;

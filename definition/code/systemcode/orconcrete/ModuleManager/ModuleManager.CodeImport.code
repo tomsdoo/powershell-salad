@@ -1,0 +1,23 @@
+param($filename)
+if([string]::IsNullOrEmpty($filename))
+{
+	throw "invalid filename";
+}
+if(!(Test-Path $filename))
+{
+	throw "file not exists";
+}
+
+$mysourcel = Import-CliXml $filename;
+foreach($mysourcee in $mysourcel)
+{
+	$fullname = $SessionManager.GetValue("system.session.directory.definition.code") + $mysourcee.pathname;
+	$mydir = [io.path]::GetDirectoryName($fullname);
+
+	if(!(Test-Path $mydir))
+	{
+		New-Item $mydir -type directory | out-null;
+	}
+	$mysourcee.content | set-content $fullname;
+	write-host ("Imported " + $fullname;
+}

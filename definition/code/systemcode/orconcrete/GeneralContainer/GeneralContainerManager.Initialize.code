@@ -1,0 +1,4 @@
+param()
+$list = @();
+$this | add-member -membertype noteproperty -name List -value $list -force;
+$this;

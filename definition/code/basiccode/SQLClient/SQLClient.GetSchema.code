@@ -1,0 +1,7 @@
+param()
+$strConn = $this.builder.connectionstring;
+$conn = new-object system.data.sqlclient.sqlconnection($strConn);
+$dummy= $conn.Open();
+$ret = $conn.GetSchema("columns");
+$dummy = $conn.close();
+$ret;

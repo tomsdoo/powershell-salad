@@ -1,0 +1,3 @@
+param($string, $key)
+$secstr = convertto-securestring $string -key $key;
+[SALAD.BL.Util]::ConvertSecureToPlain($secstr);

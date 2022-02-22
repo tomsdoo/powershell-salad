@@ -1,0 +1,4 @@
+param($sddlsid)
+$this | Add-Member -MemberType NoteProperty -Name SID -Value (New-Object System.Security.Principal.SecurityIdentifier($sddlsid)) -Force;
+$this = $this.InitializeMember();
+$this;

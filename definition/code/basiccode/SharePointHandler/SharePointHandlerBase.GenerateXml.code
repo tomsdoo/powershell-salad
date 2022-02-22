@@ -1,0 +1,12 @@
+param()
+$xml = New-Object System.Xml.XmlDocument;
+$xml.AppendChild($xml.CreateXmlDeclaration("1.0", "utf-8", $null)) | Out-Null;
+$envelope = $xml.CreateElement("soap", "Envelope", "http://schemas.xmlsoap.org/soap/envelope/");
+$xml.AppendChild($envelope) | Out-Null;
+$envelope.SetAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance") | Out-Null;
+$envelope.SetAttribute("xmlns:xsd", "http://www.w3.org/2001/XMLSchema") | Out-Null;
+$body = $xml.CreateElement("soap", "Body", $xml.DocumentElement.NamespaceURI);
+$envelope.AppendChild($body) | Out-Null;
+$commandxmlelement = $this.GenerateCommand($xml);
+$body.AppendChild($commandxmlelement) | Out-Null;
+$xml;

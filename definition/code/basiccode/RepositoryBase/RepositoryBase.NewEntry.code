@@ -1,0 +1,30 @@
+param($obj)
+$ret = $null;
+$propl = $null;
+if($obj)
+{
+	$propl = @();
+	$obj | get-member -type noteproperty | %{$_.name} | ?{$_ -ne ""} | %{$propl += $_};
+	$obj | get-member -type property | %{$_.name} | ?{$_ -ne ""} | %{$propl += $_};
+}
+else
+{
+	if(!($this.recordset))
+	{
+		$this.load() | out-null;
+	}
+	$temp = $this.recordset;
+	$propl = $temp | get-member -membertype noteproperty | %{$_.name};
+}
+
+$ret = new-object psobject;
+foreach($prope in $propl)
+{
+	$val = "";
+	if($obj)
+	{
+		$val = $obj.$prope;
+	}
+	$ret | add-member -membertype noteproperty -name $prope -value $val -force;
+}
+$ret;

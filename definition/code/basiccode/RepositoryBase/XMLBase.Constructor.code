@@ -1,0 +1,5 @@
+param()
+$baselist = @();
+$baselist += "RepositoryBase";
+$this | add-member -membertype noteproperty -name BaseClass -value $baselist -force;
+$this;

@@ -1,0 +1,4 @@
+param($mdbfilename)
+$app = New-Object -Comobject Access.Application;
+$dummy = $app.NewCurrentDatabase($mdbfilename);
+$dummy = $app.quit();

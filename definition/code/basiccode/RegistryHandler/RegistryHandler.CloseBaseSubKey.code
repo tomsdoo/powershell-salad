@@ -1,0 +1,6 @@
+param()
+$dummy = $this.OpenedSubKey.Close();
+$this | add-member -membertype noteproperty -name OpenedSubKey -value "Nothing" -force;
+$dummy = $this.OpenedBaseKey.Close();
+$this | add-member -membertype noteproperty -name OpenedBaseKey -value "Nothing" -force;
+$this;

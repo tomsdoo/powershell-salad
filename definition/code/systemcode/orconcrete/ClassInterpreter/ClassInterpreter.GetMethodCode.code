@@ -1,0 +1,3 @@
+param($methodname)
+$code = $CodeManager.registry | ?{$_.name -eq ($this.targetclassname + "." + $methodname)} | %{$_.value};
+$code;

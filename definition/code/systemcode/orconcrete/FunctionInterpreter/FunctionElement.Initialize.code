@@ -1,0 +1,3 @@
+param($seq, $filename)
+$this | add-member -membertype noteproperty -name Seq -value $seq -force;
+$this.load($filename);

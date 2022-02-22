@@ -1,0 +1,2 @@
+param()
+$this.recordset | export-clixml $this.repository;

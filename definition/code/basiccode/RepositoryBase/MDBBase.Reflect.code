@@ -1,0 +1,42 @@
+param($obj)
+$acc = new accessclient;
+$i = 0;
+$max = 1;
+$id = $progressmanager.newhandle();
+if($obj.count)
+{
+	$max = $obj.count;
+}
+$succeededlist = @();
+$failedlist = @();
+foreach($e in $obj)
+{
+	$bsucceeded = $true;
+	$sql = $this.reflectsql($e);
+	if($sql -ne "")
+	{
+		$progressmanager.Reflect("ExecutingQuery", $sql, ((($i + 1) / $max) * 100), $id);
+		try
+		{
+			$dum = $acc.executenonquery($this.repository, $sql);
+			$bsucceeded = $true;
+		}
+		catch
+		{
+			$bsucceeded = $false;
+		}
+	}
+	if($bsucceeded)
+	{
+		$succeededlist += $e;
+	}
+	else
+	{
+		$failedlist += $e;
+	}
+	$i++;
+}
+$ret = new-object psobject;
+$ret | add-member -membertype noteproperty -name Succeeded -value $succeededlist -force;
+$ret | add-member -membertype noteproperty -name Failed -value $failedlist -force;
+$ret;

@@ -1,0 +1,2 @@
+param($wmiclassname)
+get-wmiobject -computername $this.computername -namespace root\cimv2 -class $wmiclassname;

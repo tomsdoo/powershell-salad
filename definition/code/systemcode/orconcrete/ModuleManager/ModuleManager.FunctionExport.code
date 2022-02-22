@@ -1,0 +1,25 @@
+param($functionname,$outfolder)
+$myfile = Get-ChildItem $SessionManager.GetValue("system.session.directory.scripts") -recurse | ?{$_.name -eq ($functionname + ".ps1")};
+$pathname = $myfile.fullname.Replace($SessionManager.GetValue("system.session.directory.scripts"), [string]::Empty);
+$tempcontentl = Get-Content $myfile.fullname;
+$content = @();
+foreach($tempcontente in $tempcontentl)
+{
+	$content += $tempcontente.tostring();
+}
+$tempo = new-object psobject;
+$tempo | add-member -membertype noteproperty -name PathName -value $pathname -force;
+$tempo | add-member -membertype noteproperty -name Content -value $content -force;
+
+$myfolder = $outfolder;
+if([string]::IsNullOrEmpty($outfolder))
+{
+	throw "invalid out folder";
+}
+
+if([io.path]::getfilename($myfolder) -ne [string]::empty)
+{
+	$myfolder += [io.path]::directoryseparatorchar.tostring();
+}
+$fn = $myfolder + $functionname + ".xml";
+$tempo | export-clixml $fn;

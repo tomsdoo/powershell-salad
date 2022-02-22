@@ -1,0 +1,11 @@
+param()
+$rl = $null;
+try
+{
+	$rl = Import-CliXML $this.Repository;
+	$this | add-member -membertype noteproperty -name RecordSet -value $rl -force;
+}
+catch
+{
+}
+$rl;

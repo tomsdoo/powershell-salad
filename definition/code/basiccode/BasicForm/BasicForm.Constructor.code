@@ -1,0 +1,4 @@
+param()
+[system.reflection.assembly]::LoadWithPartialName("system.windows.forms") | Out-Null;
+[system.reflection.assembly]::LoadWithPartialName("system.drawing") | Out-Null;
+$this;

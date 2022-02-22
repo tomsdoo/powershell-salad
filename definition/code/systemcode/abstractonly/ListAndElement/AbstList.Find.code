@@ -1,0 +1,7 @@
+param($seq)
+$ret = $null;
+if($this.list.count -gt 0)
+{
+	$ret = $this.list | ?{$_.seq -eq $seq};
+}
+$ret;

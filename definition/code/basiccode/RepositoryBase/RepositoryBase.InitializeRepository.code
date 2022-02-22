@@ -1,0 +1,4 @@
+param($repository, $keylist)
+$this | add-member -membertype noteproperty -name Repository -value $repository -force;
+$this | add-member -membertype noteproperty -name KeyColumnList -value $keylist -force;
+$this;

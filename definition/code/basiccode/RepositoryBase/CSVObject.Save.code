@@ -1,0 +1,17 @@
+param()
+$this.csvdataset | export-csv $this.csvfilename -encoding default;
+$cl = get-content $this.csvfilename;
+$bignore = $true;
+$templ = 
+foreach($ce in $cl)
+{
+	if($bignore)
+	{
+		$bignore = $false;
+	}
+	else
+	{
+		$ce;
+	}
+}
+$templ | set-content $this.csvfilename;

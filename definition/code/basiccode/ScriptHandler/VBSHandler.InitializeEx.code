@@ -1,0 +1,27 @@
+param()
+$lines = $this.allscript.Split([System.Environment]::NewLine.ToCharArray());
+$classnames = @();
+foreach($linee in $lines)
+{
+	if($linee -like "Class *")
+	{
+		$cncand = $linee -replace "Class ", [string]::Empty;
+		$cncand = $cncand.Trim();
+		$classnames += $cncand;
+	}
+}
+$sb = New-Object System.Text.StringBuilder;
+$sb.Append([System.Environment]::NewLine) | Out-Null;
+$sb.Append("Function CreateInstance(classname)" + [System.Environment]::NewLine) | Out-Null;
+$sb.Append("Select Case UCase(classname)" + [System.Environment]::NewLine) | Out-Null;
+foreach($classname in $classnames)
+{
+	$sb.Append("Case `"" + $classname.ToUpper() + "`"" + [System.Environment]::NewLine) | Out-Null;
+	$sb.Append("Set CreateInstance = New " + $classname + [System.Environment]::NewLine) | Out-Null;
+}
+$sb.Append("Case Else" + [System.Environment]::NewLine) | Out-Null;
+$sb.Append("Set CreateInstance = Nothing" + [System.Environment]::NewLine) | Out-Null;
+$sb.Append("End Select" + [System.Environment]::NewLine) | Out-Null;
+$sb.Append("End Function" + [System.Environment]::NewLine) | Out-Null;
+$this.allscript = $this.allscript + $sb.ToString();
+$this | Add-Member -MemberType NoteProperty -Name Classes -Value $classnames -Force;

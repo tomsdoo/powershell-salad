@@ -1,0 +1,37 @@
+param($obj)
+$propl = $this.GetPropertyNames($obj);
+$presql = "";
+$presql += "insert into ";
+$presql += "[";
+$presql += $this.classname;
+$presql += "]";
+$presql += " ";
+$colstatement = "";
+$valstatement = "";
+$bf = $true;
+$colstatement += " (";
+$valstatement += " (";
+foreach($prope in $propl)
+{
+	if(($obj.$prope.gettype()).name -ne "DBNull")
+	{
+		if($obj.$prope -ne "")
+		{
+			if($bf)
+			{
+				$bf = $false;
+			}
+			else
+			{
+				$colstatement += ",";
+				$valstatement += ",";
+			}
+			$colstatement += ("[" + $prope + "]");
+			$valstatement += ("'" + $obj.$prope + "'");
+		}
+	}
+}
+$colstatement += ") ";
+$valstatement += ") ";
+$sql = $presql + $colstatement + " values " + $valstatement;
+$sql;

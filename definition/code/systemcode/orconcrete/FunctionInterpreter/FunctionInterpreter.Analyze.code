@@ -1,0 +1,11 @@
+param()
+$filelist = (new FunctionInterpreterUtility).GetFunctionFileNames();
+$l = new FunctionList;
+$l = $l.Initialize();
+foreach($filee in $filelist)
+{
+	$e = new FunctionElement;
+	$e = $e.Initialize(($l.maxseq() + 1), $filee);
+	$l = $l.add($e);
+}
+$l;

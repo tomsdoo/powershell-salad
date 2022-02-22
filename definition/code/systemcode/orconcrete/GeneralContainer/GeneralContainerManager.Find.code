@@ -1,0 +1,2 @@
+param($name)
+$this.list | ?{$_.name -eq $name};

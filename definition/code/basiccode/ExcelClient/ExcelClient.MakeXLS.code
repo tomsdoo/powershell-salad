@@ -1,0 +1,11 @@
+param($filename, $sheetname)
+$app = New-Object -Comobject Excel.Application;
+$app.displayalerts = $false;
+$book = $a.workbooks.add();
+if($book.worksheets.count -gt 1)
+{
+	$book.worksheets.count..2 | %{$dummy = $book.worksheets.item($_).delete()};
+}
+$book.worksheets.item(1).name = $sheetname;
+$dummy = $book.saveas($filename);
+$dummy = $app.quit();

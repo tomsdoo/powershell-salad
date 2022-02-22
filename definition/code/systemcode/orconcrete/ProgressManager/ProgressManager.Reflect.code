@@ -1,0 +1,3 @@
+param($title, $status, $index, $id)
+$titlemessage = $env:computername + " " + $env:username + " " + (get-date -format "yyyy/MM/dd HH:mm:ss") + "`n" + $title;
+Write-Progress -activity $titlemessage -status $status -percentcomplete $index -id $id;

@@ -1,0 +1,3 @@
+param($obj)
+$propl = $obj | get-member -type noteproperty | %{$_.name};
+$propl;

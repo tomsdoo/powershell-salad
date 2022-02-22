@@ -1,0 +1,14 @@
+param($propname)
+$altobject = new-object psobject;
+$propl = $this.myobject | get-member -type noteproperty | %{$_.name};
+$tempv = "";
+foreach($prope in $propl)
+{
+	if($prope)
+	{
+		$altobject | add-member -membertype noteproperty -name $prope -value $tempv -force;
+	}
+}
+$altobject | add-member -membertype noteproperty -name $propname -value $tempv -force;
+$this | add-member -membertype noteproperty -name MyObject -value $altobject -force;
+$this;

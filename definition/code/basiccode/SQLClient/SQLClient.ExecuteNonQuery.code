@@ -1,0 +1,8 @@
+param($sql)
+$strCconn = $this.builder.connectionstring;
+$conn = new-object system.data.sqlclient.sqlconnection($strConn);
+$cmd = new-object system.data.sqlclient.sqlcommand($sql, $conn);
+$dummy = $conn.open();
+$r = $cmd.ExecuteNonQuery();
+$dummy = $conn.Close();
+$r;

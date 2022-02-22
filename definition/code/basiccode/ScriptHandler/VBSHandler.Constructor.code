@@ -1,0 +1,7 @@
+param()
+$baselist = @();
+$baselist += "ScriptHandler";
+$this | Add-Member -MemberType NoteProperty -Name BaseClass -Value $baselist -Force;
+$this | Add-Member -MemberType NoteProperty -Name ScriptFileExtension -Value ".vbs" -Force;
+$this | Add-Member -MemberType NoteProperty -Name Language -Value "vbscript" -Force;
+$this;

@@ -1,0 +1,12 @@
+param($propname)
+$altf = new $this.classname;
+$propl = $this.myobject | get-member -type noteproperty | %{$_.name};
+foreach($prope in $propl)
+{
+	if($propname -ne $prope)
+	{
+		$altf = $altf.addproperty($prope);
+	}
+}
+$this | add-member -membertype noteproperty -name MyObject $altf.myobject -force;
+$this;

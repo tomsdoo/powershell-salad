@@ -1,0 +1,5 @@
+param($hive, $path, $name, $value, $valuekind)
+$this = $this.openbasesubkey($hive, $path, $true);
+$valk = $this.TranslateValueKind($valuekind);
+$dummy = $this.openedsubkey | %{$_.setvalue($name, $value, $valk)};
+$this = $this.closebasesubkey();

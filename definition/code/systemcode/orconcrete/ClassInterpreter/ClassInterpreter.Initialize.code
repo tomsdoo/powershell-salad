@@ -1,0 +1,3 @@
+param($classname)
+$this | add-member -membertype noteproperty -name TargetClassName -value $classname -force;
+$this;

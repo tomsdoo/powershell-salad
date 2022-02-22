@@ -1,0 +1,4 @@
+param()
+$rl = Get-Content $this.csvfilename | ConvertFrom-Csv;
+$this | add-member -membertype noteproperty -name CSVDataSet -value $rl -force;
+$rl;

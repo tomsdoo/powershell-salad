@@ -1,0 +1,13 @@
+param($CLIXMLFileName, $XLSFileName)
+$tempfilename = [System.IO.Path]::GetTempFileName() + ".csv";
+$this.MakeCSVFromCLIXML($CLIXMLFileName, $tempfilename);
+$app = New-Object -Comobject Excel.Application;
+$app.displayalerts = $false;
+$book = $app.workbooks.open($tempfilename);
+$dummy = $book.worksheets.item(1).range("1:1").delete();
+$book.worksheets.item(1).name = [System.IO.Path]::GetFileNameWithoutExtension($CLIXMLFileName);
+$dummy = $book.saveas($XLSFileName, [Microsoft.Office.Interop.Excel.xlFileFormat]::xlWorkbookNormal);
+$dummy = $book.close();
+$dummy = $app.quit();
+$app = $null;
+$dummy = Remove-Item $tempfilename;

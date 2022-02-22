@@ -1,0 +1,21 @@
+param()
+$app = New-Object -Comobject InternetExplorer.Application;
+while($app.busy)
+{
+	$dummy = 0;
+	$dummy++;
+}
+$a.visible = $true;
+$fl = Get-ChildItem $this.folderpath | sort name;
+foreach($fe in $fl)
+{
+	$app.navigate($fe.fullname);
+	$dummy = 0;
+	while($app.busy)
+	{
+		$dummy++;
+	}
+	[System.Threading.Thread]::Sleep(500);
+}
+[System.Threading.Thread]::Sleep(5000);
+$dummy = $app.quit();

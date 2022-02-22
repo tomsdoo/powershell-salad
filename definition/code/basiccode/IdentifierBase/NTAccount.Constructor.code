@@ -1,0 +1,6 @@
+param()
+$baselist = @();
+$baselist += "IdentifierBase";
+
+$this | Add-Member -MemberType NoteProperty -Name BaseClass -Value $baselist -Force;
+$this;

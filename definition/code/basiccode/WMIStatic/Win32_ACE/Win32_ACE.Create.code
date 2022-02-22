@@ -1,0 +1,7 @@
+param($computername, $accessmask, $aceflags, $acetype, $trustee)
+$acei = $this.createinstance($computername);
+$acei.accessmask = $accessmask;
+$acei.aceflags = $aceflags;
+$acei.acetype = $acetype;
+$acei.trustee = $trustee;
+$acei;

@@ -1,0 +1,4 @@
+param($keyword)
+$key = "(|(|(name=$keyword)(displayname=$keyword))(objectsid=$keyword))";
+$searcher = New-Object DirectoryServices.DirectorySearcher($key);
+$shearcher.FindAll() | %{$_.GetDirectoryEntry()};

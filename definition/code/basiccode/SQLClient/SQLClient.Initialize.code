@@ -1,0 +1,6 @@
+param($servername)
+$builder = new-object system.data.sqlclient.sqlconnectionstringbuilder($null);
+$builder.add("data source", $servername);
+$builder.add("integrated security", "true");
+$this | add-member -membertype noteproperty -name builder -value $builder -force;
+$this;

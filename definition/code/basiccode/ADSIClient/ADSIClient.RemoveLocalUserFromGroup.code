@@ -1,0 +1,4 @@
+param($groupname, $localuserid)
+$g = [adsi]("WinNT://" + $this.computername + "/" + $groupname);
+$u = [adsi]("WinNT://" + $this.computername + "/" + $localuserid);
+$g.invoke("remove", $u.path);

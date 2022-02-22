@@ -1,0 +1,8 @@
+param()
+$controlflags = new-object psobject;
+foreach($e in [System.Security.AccessControl.ControlFlags]::GetValues([System.Security.AccessControl.ControlFlags]))
+{
+	$controlflags | add-member -membertype noteproperty -name $e.ToString() -value $e -force;
+}
+$this | add-member -membertype noteproperty -name ControlFlags -value $controlflags -force;
+$this;

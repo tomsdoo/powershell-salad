@@ -1,0 +1,14 @@
+param()
+$rl = $null;
+$acc = new accessclient;
+$sql = "select * from [" + $this.classname + "] ";
+try
+{
+	$rl = $acc.ExecuteSelectQuery($this.Repository, $sql);
+	$this | add-member -membertype noteproperty -name RecordSet -value $rl -force;
+}
+catch
+{
+}
+$rl;
+

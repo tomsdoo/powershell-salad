@@ -1,0 +1,7 @@
+param($hive, $path, $writing)
+$hivel = $this.translatehive($hive);
+$basekey = [microsoft.win32.registrykey]::OpenRemoteBaseKey($hivel, $this.computername);
+$subkey = $basekey.OpenSubKey($path, $writing);
+$this | add-member -membertype noteproperty -name OpenedBaseKey -value $basekey -force;
+$this | add-member -membertype noteproperty -name OpenedSubKey -value $subkey -force;
+$this;

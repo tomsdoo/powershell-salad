@@ -1,0 +1,36 @@
+param($folder, $outfolder)
+$fl = Get-ChildItem $folder -recurse | ?{$_.attributes -notlike "*directory*"};
+
+$codefolder = $SessionManager.GetValue("system.session.directory.definition.code");
+$templ = 
+foreach($fe in $fl)
+{
+	$pathname = $fe.fullname.replace($codefolder, [string]::Empty);
+	$tempcontentl = Get-Content $fe.fullname;
+	$content = @();
+	foreach($tempcontente in $tempcontentl)
+	{
+		$content += $tempcontente.ToString();
+	}
+	$tempo = New-Object PSObject;
+	$tempo | Add-Member -Membertype NoteProperty -Name PathName -Value $pathname -Force;
+	$tempo | Add-Member -Membertype NoteProperty -Name Content -Value $content -Force;
+	$tempo;
+}
+
+$myfolder = $outfolder;
+if([string]::IsNullOrEmpty($outfolder))
+{
+	throw "invalid out folder";
+}
+if([io.path]::GetFileName($myfolder) -ne [string]::Empty)
+{
+	$myfolder += [io.path]::DirectorySeparatorChar.ToString();
+}
+$foldername = [io.path]::getfilename($folder);
+if($foldername -eq [string]::Empty)
+{
+	$foldername = [io.path]::getfilename($folder.Substring(0, $folder.Length -1));
+}
+$fn = $myfolder + $foldername + ".xml";
+$templ | export-clixml $fn;

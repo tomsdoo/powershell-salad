@@ -1,0 +1,15 @@
+param($membere)
+if(($this.find($membere.seq)) -eq $null)
+{
+	$templist = @();
+	$this.list | %{$templist += $_};
+	$templist += $membere;
+	$this | add-member -membertype noteproperty -name List -value $templist -force;
+	$this = $this.sort();
+}
+else
+{
+	Write-Host ($this.classname + " Add Error:sequence number is already used..");
+	Write-Host ("Seq:" + $membere.seq.ToString());
+}
+$this;

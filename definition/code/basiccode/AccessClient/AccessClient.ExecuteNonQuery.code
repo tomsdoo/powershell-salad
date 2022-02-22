@@ -1,0 +1,7 @@
+param($mdbfilename, $sql)
+$db = New-Object Data.OleDb.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + $mdbfilename);
+$comm = New-Object Data.OleDb.OleDbCommand($sql, $db);
+$dummy = $db.Open();
+$r = $comm.ExecuteNonQuery();
+$dummy = $db.Close();
+$r;

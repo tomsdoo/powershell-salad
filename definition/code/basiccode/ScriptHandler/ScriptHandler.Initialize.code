@@ -1,0 +1,15 @@
+param($folder)
+$this | Add-Member -MemberType NoteProperty -Name scriptfolder -Value $folder -Force;
+$fl = Get-ChildItem $this.scriptfolder -Recurse | ?{$_.Attribute -notlike "*directory*"} | ?{$_.extension -eq $this.scriptfileextension};
+$sb = New-Object System.Text.StringBuilder;
+foreach($fe in $fl)
+{
+	Get-Content $fe.FullName | %{$sb.Append($_.ToString() + [System.Environment]::NewLine)} | Out-Null;
+}
+$this | Add-Member -MemberType NoteProperty -Name allscript -Value ($sb.ToString()) -Force;
+$this.InitializeEx();
+$s = New-Object -Comobject MSScriptControl.ScriptControl;
+$s.Language = $this.language;
+$s.AddCode($this.allscript);
+$this | Add-Member -MemberType NoteProperty -Name ScriptControl -Value $s -Force;
+$this;

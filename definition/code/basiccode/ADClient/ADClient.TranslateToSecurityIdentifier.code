@@ -1,0 +1,2 @@
+param($DirectoryEntry)
+New-Object System.Security.Principal.SecurityIdentifier($DirectoryEntry.objectsid[0], 0);

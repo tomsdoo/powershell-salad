@@ -1,0 +1,19 @@
+param($enginestr)
+$engine = "Microsoft.Jet.OLEDB.4.0";
+switch($enginestr.ToUpper())
+{
+	"ACE"
+	{
+		$engine = "Microsoft.ACE.OLEDB.12.0";
+	}
+	"JET"
+	{
+		$engine = "Microsoft.Jet.OLEDB.4.0";
+	}
+	default
+	{
+		$engine = "Microsoft.Jet.OLEDB.4.0";
+	}
+}
+$this | Add-Member -MemberType NoteProperty -Name Engine -Value $engine -Force;
+$this;
