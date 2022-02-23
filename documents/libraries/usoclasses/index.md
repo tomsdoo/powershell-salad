@@ -41,7 +41,7 @@ See [Get-ErrorLog](../functions/get-errorlog.md) and [ErrorLogCollector] for che
 | [ScriptHandler](scripthandler.md) | provides the functions around the scripts. It's a base of [VBSHandler]. |
 | [SharePointAccessClient](sharepointaccessclient.md) | provides the functions around Sharepoint list. |
 | [SharePointGetListCollection](sharepointgetlistcollection.md) | gets the Sharepoint lists information. |
-| [SharePointGetUserCollectionFromSite] | gets the users of the Sharepoint site. |
+| [SharePointGetUserCollectionFromSite](sharepointgetusercollectionfromsite.md) | gets the users of the Sharepoint site. |
 | [SharePointGetViewCollection] | gets the views of the Sharepoint list. |
 | [SharePointHandlerBase] | a base of [SharePointGetListCollection], [SharePointGetUserCollectionFromSite], [SharePointGetViewCollection]. |
 | [SID](sid.md) | represents SID. |
