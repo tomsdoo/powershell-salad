@@ -5,7 +5,7 @@ This class provides the functions of GetUserCollectionFromSite method of Sharepo
 [SharePointHandlerBase]
 
 ### Properties
-| Name | Summary |
+| Name | description |
 |:--|:--|
 | SiteUrl | target site url. |
 
@@ -42,7 +42,7 @@ This method generates a System.Xml.XmlElement instance for GetUserCollectionFrom
 This method would be called by GenerateXml method.(SharePointHandlerBase.GenerateXml)
 
 ##### Parameters
-| Name | Summary |
+| Name | description |
 |:--|:--|
 | $xml | an instance of System.Xml.XmlDocument. |
 
@@ -53,7 +53,7 @@ an instance of System.Xml.XmlElement.
 This method initializes the properties of this instance.
 
 ##### Parameters
-| Name | Summary |
+| Name | description |
 |:--|:--|
 | $siteurl | Sharepoint site url, like "http://whatever.domain/" |
 
@@ -64,7 +64,7 @@ this instance.
 This method interprets XML string.
 
 ##### Parameters
-| Name | Summary |
+| Name | description |
 |:--|:--|
 | $xmlstr | XML string |
 
