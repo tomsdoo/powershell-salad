@@ -38,7 +38,7 @@ See [Get-ErrorLog](../functions/get-errorlog.md) and [ErrorLogCollector] for che
 | [RegistryHandler](resigtryhandler.md) | provides the functions around Windows registries. |
 | [RepositoryBase](repositorybase.md) | provides the abstract functions about the repository. |
 | [ScreenSnapshot](screensnapshot.md) | provides the functions about screen snapshots. |
-| [ScriptHandler](scripthandler.md) | provides the functions around the scripts. It's a base of [VBSHandler]. |
+| [ScriptHandler](scripthandler.md) | provides the functions around the scripts. It's a base of [VBSHandler](vbshandler.md). |
 | [SharePointAccessClient](sharepointaccessclient.md) | provides the functions around Sharepoint list. |
 | [SharePointGetListCollection](sharepointgetlistcollection.md) | gets the Sharepoint lists information. |
 | [SharePointGetUserCollectionFromSite](sharepointgetusercollectionfromsite.md) | gets the users of the Sharepoint site. |
