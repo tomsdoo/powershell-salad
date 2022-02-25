@@ -43,7 +43,7 @@ See [Get-ErrorLog](../functions/get-errorlog.md) and [ErrorLogCollector] for che
 | [SharePointGetListCollection](sharepointgetlistcollection.md) | gets the Sharepoint lists information. |
 | [SharePointGetUserCollectionFromSite](sharepointgetusercollectionfromsite.md) | gets the users of the Sharepoint site. |
 | [SharePointGetViewCollection](sharepointgetviewcollection.md) | gets the views of the Sharepoint list. |
-| [SharePointHandlerBase] | a base of [SharePointGetListCollection], [SharePointGetUserCollectionFromSite], [SharePointGetViewCollection]. |
+| [SharePointHandlerBase](sharepointhandlerbase.md) | a base of [SharePointGetListCollection](sharepointgetlistcollection.md), [SharePointGetUserCollectionFromSite](sharepointgetusercollectionfromsite.md), [SharePointGetViewCollection](sharepointgetviewcollection.md). |
 | [SID](sid.md) | represents SID. |
 | [SQLClient] | provides the functions as SQLServer client. |
 | [TraceLogCollector] | collects the trace log of SALAD. |
