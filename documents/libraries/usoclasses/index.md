@@ -42,7 +42,7 @@ See [Get-ErrorLog](../functions/get-errorlog.md) and [ErrorLogCollector] for che
 | [SharePointAccessClient](sharepointaccessclient.md) | provides the functions around Sharepoint list. |
 | [SharePointGetListCollection](sharepointgetlistcollection.md) | gets the Sharepoint lists information. |
 | [SharePointGetUserCollectionFromSite](sharepointgetusercollectionfromsite.md) | gets the users of the Sharepoint site. |
-| [SharePointGetViewCollection] | gets the views of the Sharepoint list. |
+| [SharePointGetViewCollection](sharepointgetviewcollection.md) | gets the views of the Sharepoint list. |
 | [SharePointHandlerBase] | a base of [SharePointGetListCollection], [SharePointGetUserCollectionFromSite], [SharePointGetViewCollection]. |
 | [SID](sid.md) | represents SID. |
 | [SQLClient] | provides the functions as SQLServer client. |
