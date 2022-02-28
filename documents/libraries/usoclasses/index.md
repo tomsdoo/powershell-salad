@@ -46,6 +46,6 @@ See [Get-ErrorLog](../functions/get-errorlog.md) and [ErrorLogCollector] for che
 | [SharePointHandlerBase](sharepointhandlerbase.md) | a base of [SharePointGetListCollection](sharepointgetlistcollection.md), [SharePointGetUserCollectionFromSite](sharepointgetusercollectionfromsite.md), [SharePointGetViewCollection](sharepointgetviewcollection.md). |
 | [SID](sid.md) | represents SID. |
 | [SQLClient] | provides the functions as SQLServer client. |
-| [TraceLogCollector] | collects the trace log of SALAD. |
+| [TraceLogCollector](tracelogcollector.md) | collects the trace log of SALAD. |
 | [VBSHandler](vbshandler.md) | provides the functions around VBScript. |
 | [XMLBase]  |provides the functions about the repository in xml. |
