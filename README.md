@@ -30,7 +30,7 @@ The users can make and use the scripts or some in SALAD by their own.
 
 - Library
   - [Functions](documents/libraries/functions/index.md): the PowerShell functions that the users write.
-  - USOClasses: the classes made of script files that the users write.
+  - [USOClasses](documents/libraries/usoclasses/index.md): the classes made of script files that the users write.
   - the libraries of the environment can be seen in HTML
   USOClasses, Functions, and C# classes that you made in SALAD can be seen in HTML.
 
