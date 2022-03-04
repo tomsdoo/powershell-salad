@@ -24,7 +24,7 @@ You put it, and it works.
 
 - [using Access MDB](documents/design/misc/about-mdb.md)
 - [recording macros](documents/design/misc/about-macro.md)
-- [use functions
+- use functions
 
 The users can make and use the scripts or some in SALAD by their own.
 
