@@ -48,4 +48,4 @@ See [Get-ErrorLog](../functions/get-errorlog.md) and [ErrorLogCollector] for che
 | [SQLClient](sqlclient.md) | provides the functions as SQLServer client. |
 | [TraceLogCollector](tracelogcollector.md) | collects the trace log of SALAD. |
 | [VBSHandler](vbshandler.md) | provides the functions around VBScript. |
-| [XMLBase]  |provides the functions about the repository in xml. |
+| [XMLBase](xmlbase.md)  |provides the functions about the repository in xml. |
